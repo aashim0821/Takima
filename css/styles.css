@@ -1,0 +1,390 @@
+:root {
+  /* OKLCH Cutting-Edge Color Palette */
+  --bg-primary-fallback: #1F110D; 
+  --bg-primary: oklch(21% 0.02 45); 
+  
+  --bg-secondary-fallback: #321C14;
+  --bg-secondary: oklch(28% 0.03 45); 
+  
+  --bg-glass-fallback: rgba(50, 28, 20, 0.45);
+  --bg-glass: color-mix(in oklch, var(--bg-secondary) 45%, transparent);
+  
+  --text-primary-fallback: #FAF5F0;
+  --text-primary: oklch(97% 0.01 65); 
+  
+  --text-muted-fallback: #D2B4A3;
+  --text-muted: oklch(78% 0.04 55); 
+  
+  --accent-color-fallback: #D4AF37;
+  --accent-color: oklch(75% 0.15 85); 
+  
+  --border-color-fallback: rgba(250, 245, 240, 0.1);
+  --border-color: color-mix(in oklch, var(--text-primary) 10%, transparent);
+
+  /* Fluid Typography */
+  --font-display: clamp(64px, 10vw, 140px);
+  --font-h2: clamp(40px, 6vw, 80px);
+  --font-h3: clamp(28px, 4vw, 48px);
+  --font-body: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary-fallback);
+  background-color: var(--bg-primary);
+  color: var(--text-primary-fallback);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+h1, h2, h3, h4, .display-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-display: swap; 
+}
+
+/* Typography Utilities */
+.text-center { text-align: center; }
+.text-muted { color: var(--text-muted-fallback); color: var(--text-muted); }
+.text-accent { color: var(--accent-color-fallback); color: var(--accent-color); }
+.gradient-text {
+  background: linear-gradient(135deg, #FAD961 0%, #F76B1C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.italic { font-style: italic; }
+
+/* Sticky Frosted Navbar (Minimal) */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 24px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  mix-blend-mode: difference; /* Gives a cinematic feel depending on bg */
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+/* Primary Button with Micro-interactions */
+.btn-primary {
+  background: var(--accent-color-fallback);
+  background: var(--accent-color);
+  color: #111;
+  padding: 14px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  display: inline-block;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease;
+  border: none;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 24px color-mix(in oklch, var(--accent-color) 30%, transparent);
+}
+
+.btn-primary:active {
+  transform: scale(0.95) !important;
+  box-shadow: 0 2px 10px color-mix(in oklch, var(--accent-color) 20%, transparent);
+}
+
+/* Scenes Base */
+.scene {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SCENE 1: The Hook */
+.scene-hook {
+  overflow: hidden;
+}
+
+.hero-bg-wrapper {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+}
+
+.hero-bg {
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/hero.png');
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.1); /* For parallax zoom */
+  will-change: transform;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(31,17,13,0.3) 0%, var(--bg-primary) 100%);
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 1;
+  padding: 0 5%;
+}
+
+.hero-content h1 {
+  font-size: var(--font-display);
+  margin-bottom: 24px;
+  will-change: transform, opacity;
+}
+
+.hero-content p {
+  font-size: 20px;
+  color: var(--text-muted);
+  will-change: opacity;
+}
+
+/* SCENE 2: The Context */
+.scene-context {
+  background-color: var(--bg-primary);
+  padding: 0 10%;
+}
+
+.context-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.context-content h2 {
+  font-size: var(--font-h2);
+  line-height: 1.4;
+  color: rgba(250, 245, 240, 0.1); /* Base text color before scrub */
+}
+
+/* We will inject colored spans via JS to create the fill effect */
+.scrub-text span {
+  background: linear-gradient(to right, var(--text-primary) 50%, rgba(250, 245, 240, 0.1) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* SCENE 3: The Journey (Horizontal Scroll) */
+.scene-journey {
+  background-color: var(--bg-primary);
+  display: block; /* Override base scene flex */
+  overflow: hidden;
+}
+
+.horizontal-container {
+  display: flex;
+  width: 400vw; /* 4 panels * 100vw */
+  height: 100vh;
+  will-change: transform;
+}
+
+.horizontal-panel {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10%;
+}
+
+.intro-panel {
+  align-items: flex-start;
+}
+
+.image-panel {
+  align-items: center;
+}
+
+.panel-image-wrapper {
+  position: relative;
+  width: 80vw;
+  height: 70vh;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.panel-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.panel-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 60px 40px;
+  background: linear-gradient(to top, rgba(31, 17, 13, 0.95) 0%, transparent 100%);
+}
+
+.panel-badge {
+  display: inline-block;
+  background: var(--accent-color);
+  color: #111;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.panel-overlay h3 {
+  font-size: var(--font-h3);
+  margin-bottom: 8px;
+}
+
+.panel-overlay p {
+  font-size: 20px;
+  color: var(--text-muted);
+}
+
+.text-panel {
+  align-items: center;
+}
+
+.panel-content-box {
+  background: var(--bg-secondary);
+  padding: 80px;
+  border-radius: 32px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  max-width: 800px;
+}
+
+/* SCENE 4: The Climax */
+.scene-climax {
+  background-color: var(--bg-secondary);
+  flex-direction: column;
+  padding: 100px 5%;
+}
+
+.climax-content {
+  width: 100%;
+  max-width: 1400px;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.testimonial-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  padding: 48px;
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+  will-change: transform, opacity;
+}
+
+.stars { color: var(--accent-color); margin-bottom: 24px; letter-spacing: 4px; font-size: 24px;}
+.quote { font-size: 22px; font-style: italic; margin-bottom: 32px; line-height: 1.6;}
+.author { font-weight: 600; color: var(--text-muted); font-size: 18px;}
+
+/* SCENE 5: The Resolution */
+.scene-resolution {
+  background-color: var(--bg-primary);
+  text-align: center;
+  flex-direction: column;
+  padding: 100px 5%;
+}
+
+.socials a { 
+  display: inline-block;
+  color: var(--text-primary); 
+  text-decoration: none; 
+  font-weight: 500; 
+  font-size: 20px;
+  padding: 16px 32px;
+  border: 1px solid var(--border-color);
+  border-radius: 40px;
+  transition: border-color 0.3s ease;
+  will-change: transform;
+}
+
+.socials a:hover { 
+  border-color: var(--accent-color); 
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .horizontal-container {
+    width: 100vw;
+    height: auto;
+    flex-direction: column;
+  }
+  .horizontal-panel {
+    height: auto;
+    min-height: 60vh;
+    padding: 60px 5%;
+  }
+  .panel-image-wrapper {
+    width: 100%;
+    height: 50vh;
+  }
+  .scene-journey {
+    overflow: visible;
+  }
+  .panel-content-box {
+    padding: 40px 20px;
+  }
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+  .testimonial-card {
+    margin-top: 0 !important;
+    padding: 32px 24px;
+  }
+  .climax-content {
+    margin-top: -40px;
+  }
+  nav {
+    padding: 16px 5%;
+  }
+  .logo {
+    font-size: 24px;
+  }
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}

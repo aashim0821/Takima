@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Takima Cafe in Cumbum, Theni. A cozy aesthetic art cafe offering world-class coffee, hot chocolate, and classic Tiramisu.">
+  <title>Takima Cafe | An Immersive Journey</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- JSON-LD Schema for LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Takima Cafe",
+    "image": "https://takimacafe.com/images/hero.png",
+    "@id": "",
+    "url": "https://takimacafe.com",
+    "telephone": "",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "L F Road, Mani Nagaram",
+      "addressLocality": "Cumbum",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "625516",
+      "addressCountry": "IN"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "12:00",
+      "closes": "22:00"
+    },
+    "servesCuisine": ["Coffee", "Desserts", "Sandwiches"],
+    "priceRange": "$$"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation (Minimal for immersive experience) -->
+  <nav id="navbar" aria-label="Main Navigation">
+    <a href="#" class="logo" aria-label="Takima Cafe Home">Takima</a>
+    <a href="#resolution" class="btn-primary magnetic-btn" aria-label="Get directions to visit us">Visit Us</a>
+  </nav>
+
+  <!-- SCENE 1: The Hook (0-15%) -->
+  <section id="scene-hook" class="scene scene-hook">
+    <div class="hero-bg-wrapper">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="badge fade-element">Cumbum's Hidden Gem</div>
+      <h1 id="main-heading" class="title-element">Taste the <span class="gradient-text italic">Art</span> of Coffee.</h1>
+      <p class="fade-element">Scroll to begin the journey</p>
+    </div>
+  </section>
+
+  <!-- SCENE 2: The Context (15-35%) -->
+  <section id="scene-context" class="scene scene-context" aria-labelledby="story-heading">
+    <div class="context-content">
+      <h2 id="story-heading" class="scrub-text">
+        At Takima Cafe, we believe every cup tells a story. From our rich, velvety hot chocolate to our signature Tiramisu, every item is crafted with passion. This is your sanctuary.
+      </h2>
+    </div>
+  </section>
+
+  <!-- SCENE 3: The Journey (Horizontal Scroll) (35-70%) -->
+  <section id="scene-journey" class="scene scene-journey" aria-labelledby="menu-heading">
+    <div class="horizontal-container">
+      
+      <!-- Panel 1: Intro -->
+      <div class="horizontal-panel intro-panel">
+        <h2 id="menu-heading" class="display-text" style="font-size: var(--font-display); line-height: 1;">Our<br>Signatures</h2>
+        <p class="text-muted" style="margin-top: 24px; font-size: 24px;">The aesthetic flavors you keep coming back for.</p>
+      </div>
+
+      <!-- Panel 2: Tiramisu -->
+      <div class="horizontal-panel image-panel">
+        <div class="panel-image-wrapper">
+          <img src="images/tiramisu.png" alt="A delicious slice of classic Italian Tiramisu dusted with cocoa powder">
+          <div class="panel-overlay">
+            <span class="panel-badge">Chef's Special</span>
+            <h3>Classic Tiramisu</h3>
+            <p>A rich, melt-in-your-mouth Italian classic dusted with premium cocoa.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Hot Chocolate -->
+      <div class="horizontal-panel image-panel">
+        <div class="panel-image-wrapper">
+          <img src="images/hot_chocolate.png" alt="A steaming cup of rich hot chocolate topped with cocoa powder">
+          <div class="panel-overlay">
+            <h3>Signature Hot Chocolate</h3>
+            <p>Thick, velvety, and deeply comforting on a cool evening.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 4: Specialty Coffee -->
+      <div class="horizontal-panel text-panel">
+        <div class="panel-content-box">
+          <h3 style="font-size: var(--font-h2); color: var(--accent-color);">Specialty Coffee</h3>
+          <p style="font-size: 24px; margin-top: 16px;">Expertly brewed espresso from the finest beans, crafted just for you.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SCENE 4: The Climax (70-85%) -->
+  <section id="scene-climax" class="scene scene-climax" aria-label="Customer Testimonials">
+    <div class="climax-content">
+      <h2 class="display-text text-center" style="margin-bottom: 80px;">The Experience</h2>
+      <div class="reviews-grid">
+        <div class="testimonial-card review-item">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="quote">"Easily the best cafe in Cumbum! The Tiramisu is out of this world."</p>
+          <p class="author">Aashim K.</p>
+        </div>
+        <div class="testimonial-card review-item" style="margin-top: 80px;">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="quote">"Loved the hot chocolate. Such a beautiful, aesthetic interior."</p>
+          <p class="author">Sneha R.</p>
+        </div>
+        <div class="testimonial-card review-item">
+          <div class="stars" aria-label="4 out of 5 stars">★★★★☆</div>
+          <p class="quote">"Great sandwiches and an amazing atmosphere for catching up."</p>
+          <p class="author">Rahul V.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 5: The Resolution (85-100%) -->
+  <footer id="resolution" class="scene scene-resolution" aria-labelledby="footer-heading">
+    <div class="resolution-content">
+      <h2 id="footer-heading" class="display-text" style="font-size: calc(var(--font-display) * 1.5); margin-bottom: 24px;">Takima</h2>
+      <p style="font-size: 24px;">L F Road, Mani Nagaram, Cumbum, Tamil Nadu 625516</p>
+      <p style="color: var(--accent-color); margin-top: 16px; font-size: 20px;">Tue – Sun | 12:00 PM – 10:00 PM</p>
+      <div class="socials" style="margin-top: 48px;">
+        <a href="#" aria-label="Visit our Instagram page" class="magnetic-btn">Instagram</a>
+        <a href="#" aria-label="Visit our Facebook page" class="magnetic-btn">Facebook</a>
+        <a href="#" aria-label="Get directions on Google Maps" class="magnetic-btn">Directions</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Lenis for Smooth Scrolling -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <script src="js/main.js"></script>
+</body>
+</html>

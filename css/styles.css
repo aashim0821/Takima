@@ -32,6 +32,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: none !important; /* Hide default cursor globally for premium feel */
+}
+
+html, body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera globally */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 body {
@@ -42,13 +55,6 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-body::-webkit-scrollbar {
-  display: none;
 }
 
 h1, h2, h3, h4, .display-text {
@@ -57,6 +63,82 @@ h1, h2, h3, h4, .display-text {
   letter-spacing: -0.02em;
   line-height: 1.1;
   font-display: swap; 
+}
+
+/* ----------------------------------------------------
+   WORLD-CLASS UPGRADES
+---------------------------------------------------- */
+
+/* 1. Cinematic Preloader */
+.preloader {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #0d0908;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.preloader-counter {
+  font-family: 'Playfair Display', serif;
+  font-size: 10vw;
+  color: var(--accent-color);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  will-change: opacity, transform;
+}
+
+/* 2. Custom Difference Cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 24px; height: 24px;
+  background-color: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  will-change: width, height, transform;
+  /* GSAP handles position, CSS handles the state transitions */
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.custom-cursor.active {
+  width: 80px;
+  height: 80px;
+}
+
+/* 3. Cinematic Film Grain Overlay */
+.noise-overlay {
+  position: fixed;
+  top: -50%; left: -50%; right: -50%; bottom: -50%;
+  width: 200%; height: 200vh;
+  background: transparent url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.08"/%3E%3C/svg%3E') repeat;
+  pointer-events: none;
+  z-index: 9998;
+  animation: noiseAnimation 0.2s infinite;
+}
+
+@keyframes noiseAnimation {
+  0% { transform: translate(0,0) }
+  10% { transform: translate(-5%,-5%) }
+  20% { transform: translate(-10%,5%) }
+  30% { transform: translate(5%,-10%) }
+  40% { transform: translate(-5%,15%) }
+  50% { transform: translate(-10%,5%) }
+  60% { transform: translate(15%,0) }
+  70% { transform: translate(0,15%) }
+  80% { transform: translate(3%,35%) }
+  90% { transform: translate(-10%,10%) }
+}
+
+/* 3D Text Splitting specific utilities */
+.char {
+  display: inline-block;
+  will-change: transform, opacity;
 }
 
 /* Typography Utilities */
@@ -81,7 +163,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  mix-blend-mode: difference; /* Gives a cinematic feel depending on bg */
+  mix-blend-mode: difference;
 }
 
 .logo {
@@ -93,7 +175,7 @@ nav {
   letter-spacing: 1px;
 }
 
-/* Primary Button with Micro-interactions */
+/* Primary Button */
 .btn-primary {
   background: var(--accent-color-fallback);
   background: var(--accent-color);
@@ -106,7 +188,6 @@ nav {
   display: inline-block;
   transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease;
   border: none;
-  cursor: pointer;
   will-change: transform;
 }
 
@@ -122,7 +203,7 @@ nav {
 /* Scenes Base */
 .scene {
   position: relative;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -138,6 +219,7 @@ nav {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: -1;
+  /* Will handle internal parallax inside this wrapper */
 }
 
 .hero-bg {
@@ -146,7 +228,7 @@ nav {
   background-image: url('../images/hero.png');
   background-size: cover;
   background-position: center;
-  transform: scale(1.1); /* For parallax zoom */
+  transform: scale(1.1); 
   will-change: transform;
 }
 
@@ -160,12 +242,13 @@ nav {
   text-align: center;
   z-index: 1;
   padding: 0 5%;
+  /* Perspective for 3D text */
+  perspective: 1000px; 
 }
 
 .hero-content h1 {
   font-size: var(--font-display);
   margin-bottom: 24px;
-  will-change: transform, opacity;
 }
 
 .hero-content p {
@@ -188,10 +271,9 @@ nav {
 .context-content h2 {
   font-size: var(--font-h2);
   line-height: 1.4;
-  color: rgba(250, 245, 240, 0.1); /* Base text color before scrub */
+  color: rgba(250, 245, 240, 0.1); 
 }
 
-/* We will inject colored spans via JS to create the fill effect */
 .scrub-text span {
   background: linear-gradient(to right, var(--text-primary) 50%, rgba(250, 245, 240, 0.1) 50%);
   background-size: 200% 100%;
@@ -204,19 +286,19 @@ nav {
 /* SCENE 3: The Journey (Horizontal Scroll) */
 .scene-journey {
   background-color: var(--bg-primary);
-  display: block; /* Override base scene flex */
+  display: block; 
   overflow: hidden;
 }
 
 .horizontal-container {
   display: flex;
-  width: 400vw; /* 4 panels * 100vw */
+  width: 400%;
   height: 100vh;
   will-change: transform;
 }
 
 .horizontal-panel {
-  width: 100vw;
+  width: 25%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -224,13 +306,8 @@ nav {
   padding: 0 10%;
 }
 
-.intro-panel {
-  align-items: flex-start;
-}
-
-.image-panel {
-  align-items: center;
-}
+.intro-panel { align-items: flex-start; }
+.image-panel { align-items: center; }
 
 .panel-image-wrapper {
   position: relative;
@@ -241,10 +318,12 @@ nav {
   box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 
-.panel-image-wrapper img {
-  width: 100%;
+.panel-img-parallax {
+  width: 120%; /* Extra width for internal parallax */
   height: 100%;
   object-fit: cover;
+  transform: translateX(-10%); /* Start slightly left */
+  will-change: transform;
 }
 
 .panel-overlay {
@@ -252,6 +331,7 @@ nav {
   bottom: 0; left: 0; right: 0;
   padding: 60px 40px;
   background: linear-gradient(to top, rgba(31, 17, 13, 0.95) 0%, transparent 100%);
+  z-index: 2;
 }
 
 .panel-badge {
@@ -266,19 +346,10 @@ nav {
   margin-bottom: 16px;
 }
 
-.panel-overlay h3 {
-  font-size: var(--font-h3);
-  margin-bottom: 8px;
-}
+.panel-overlay h3 { font-size: var(--font-h3); margin-bottom: 8px; }
+.panel-overlay p { font-size: 20px; color: var(--text-muted); }
 
-.panel-overlay p {
-  font-size: 20px;
-  color: var(--text-muted);
-}
-
-.text-panel {
-  align-items: center;
-}
+.text-panel { align-items: center; }
 
 .panel-content-box {
   background: var(--bg-secondary);
@@ -347,44 +418,27 @@ nav {
 
 /* Responsive */
 @media (max-width: 900px) {
+  .custom-cursor { display: none; } /* Hide custom cursor on mobile */
+  * { cursor: auto !important; }
+  
   .horizontal-container {
-    width: 100vw;
+    width: 100%;
     height: auto;
     flex-direction: column;
   }
   .horizontal-panel {
+    width: 100%;
     height: auto;
     min-height: 60vh;
     padding: 60px 5%;
   }
-  .panel-image-wrapper {
-    width: 100%;
-    height: 50vh;
-  }
-  .scene-journey {
-    overflow: visible;
-  }
-  .panel-content-box {
-    padding: 40px 20px;
-  }
-  .reviews-grid {
-    grid-template-columns: 1fr;
-  }
-  .testimonial-card {
-    margin-top: 0 !important;
-    padding: 32px 24px;
-  }
-  .climax-content {
-    margin-top: -40px;
-  }
-  nav {
-    padding: 16px 5%;
-  }
-  .logo {
-    font-size: 24px;
-  }
-  .btn-primary {
-    padding: 10px 20px;
-    font-size: 14px;
-  }
+  .panel-image-wrapper { width: 100%; height: 50vh; }
+  .scene-journey { overflow: visible; }
+  .panel-content-box { padding: 40px 20px; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .testimonial-card { margin-top: 0 !important; padding: 32px 24px; }
+  .climax-content { margin-top: -40px; }
+  nav { padding: 16px 5%; }
+  .logo { font-size: 24px; }
+  .btn-primary { padding: 10px 20px; font-size: 14px; }
 }
